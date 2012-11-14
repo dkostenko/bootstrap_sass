@@ -561,3 +561,15 @@
   @for $i from 1 through $gridColumns
     .offset#{$i}
       margin-left: ($gridColumnWidth * $i) + ($gridGutterWidth * ($i + 1))
+
+@mixin grid-fluid
+  @for $i from 1 through $gridColumns
+    .span#{$i}
+      width: ($fluidGridColumnWidth * $i) + ($fluidGridGutterWidth * ($i - 1))
+      *width: ($fluidGridColumnWidth * $i) + ($fluidGridGutterWidth * ($i - 1)) - (.5 / $gridRowWidth * 100 * 1%)
+    .offset#{$i}
+      margin-left: ($fluidGridColumnWidth * $i) + ($fluidGridGutterWidth * ($i - 1)) + ($fluidGridGutterWidth*2)
+      *margin-left: ($fluidGridColumnWidth * $i) + ($fluidGridGutterWidth * ($i - 1)) - (.5 / $gridRowWidth * 100 * 1%) + ($fluidGridGutterWidth*2) - (.5 / $gridRowWidth * 100 * 1%)
+    .offset#{$i}:first-child
+      margin-left: ($fluidGridColumnWidth * $i) + ($fluidGridGutterWidth * ($i - 1)) + ($fluidGridGutterWidth)
+      *margin-left: ($fluidGridColumnWidth * $i) + ($fluidGridGutterWidth * ($i - 1)) - (.5 / $gridRowWidth * 100 * 1%) + $fluidGridGutterWidth - (.5 / $gridRowWidth * 100 * 1%)
